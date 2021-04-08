@@ -71,7 +71,7 @@ print('\n'.join(result)) # 가능한 경우
 left_stack = []
 right_stack = []
 # data = ["<","<","B","P","<","A",">",">","C","d","-"]
-data = 'ABC<<D>E<<F>>--'
+data = 'ABC<<D>E<<F>>--XY<<'
 for i in data:
   if i == '-':
     if left_stack:
@@ -86,6 +86,30 @@ for i in data:
     left_stack.append(i)
 left_stack.extend(reversed(right_stack))
 print(''.join(left_stack))
-# extend와 reversed에 대해 강의 다시 듣기
-extend()
-reversed()
+
+stack(FIFO) 이닷!! 
+
+['A'] [] A cussor
+['A', 'B'] [] AB cussor
+['A', 'B', 'C'] [] ABC cussor
+['A', 'B'] ['C'] AB cussor C 
+['A'] ['C', 'B'] A cussor BC 
+['A', 'D'] ['C', 'B'] AD cussor BC 
+['A', 'D', 'B'] ['C'] ADB cussor C 
+['A', 'D', 'B', 'E'] ['C']  ADBE cussor C 
+['A', 'D', 'B'] ['C', 'E'] ADB cussor EC 
+['A', 'D'] ['C', 'E', 'B'] AD cussor BEC 
+['A', 'D', 'F'] ['C', 'E', 'B'] ADF cussor BEC 
+['A', 'D', 'F', 'B'] ['C', 'E'] ADFB cussor EC
+['A', 'D', 'F', 'B', 'E'] ['C'] ADFBE cussor C
+['A', 'D', 'F', 'B'] ['C'] ADFB cussor C
+['A', 'D', 'F'] ['C'] ADF cussor C
+['A', 'D', 'F', 'X'] ['C'] ADFX cussor C
+['A', 'D', 'F', 'X', 'Y'] ['C'] ADFXY cussor C 
+['A', 'D', 'F', 'X'] ['C', 'Y'] ADFX cussor YC 
+['A', 'D', 'F'] ['C', 'Y', 'X'] ADF cussor XYC 
+ADFXYC
+['A', 'D', 'F']에 ['C', 'Y', 'X']가 XYC로 붙어야 하므로 ['C', 'Y', 'X']를 reversed()
+>>> ADFXXC
+
+extend() join() reversed() vs revers()정리를 할 것!!
